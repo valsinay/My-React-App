@@ -1,7 +1,8 @@
 const User = require("../models/user")
-const jwt = require("../utils/jwt");
 const router = require('express').Router();
+const jwt = require('../utils/jwt');
 const config = require('../config/config')
+
 
 router.post('/register', (req, res, next) => {
     const { username, password } = req.body;
@@ -12,6 +13,7 @@ router.post('/register', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
     const { username, password } = req.body;
+
     User.findOne({ username })
         .then((user) => {
             if (!user) {
@@ -20,22 +22,24 @@ router.post('/login', (req, res, next) => {
             }
             return Promise.all([user, user.matchPassword(password)])
         })
-        .then(async ([user, match]) => {
+        .then(([user, match]) => {
             if (!match) {
-                res.status(401).send('Invalid password');
+                res.status(401).send('Invalid username or password')
                 return;
             }
 
-            const token = await jwt.create({ id: user._id });
+            const token = jwt.createToken({ id: user._id });
             res.cookie(config.authCookieName, token);
-            res.cookie('userId', user._id);
-            res.send({ token, user });
+            res.cookie('username', user._id);
+            res.send({token,user});
+           
         })
         .catch(next);
-});
+})
 
 router.post('/logout', (req, res, next) => {
-    res.clearCookie(config.authCookieName).send('Logout successfully!');
+    res.clearCookie(config.authCookieName).send("Logout successfully!")
 })
+
 
 module.exports = router;

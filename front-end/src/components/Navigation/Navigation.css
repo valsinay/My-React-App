@@ -1,4 +1,8 @@
 
+.cool-link-auth{
+
+     display:flex;
+}
 body{
      margin:0;
      padding:0;
@@ -22,19 +26,13 @@ nav{
 li{
  display: inline-block;
  text-decoration: none;
- margin-top:1em;
-}
-
-
-li a{
-    display: inline-block;
-    color:red;
-    font-family: 'Solway', serif;
-    font-weight: bold;
+ font-family: 'Solway', serif;
+ font-weight: bold;
  font-size: 2rem;
  padding: 0 20px;
-
+ padding-top:0.5em;
 }
+
 
 .cool-link::after{
  content: "";
