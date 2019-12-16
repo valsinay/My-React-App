@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, Fragment, useState, useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 import './Navigation.css'
 import sessionManager from '../../utils/session-manager'
 
 function Navigation() {
-
-    const [isLogged, setIsLogged] = useState(false);
+    const [user] = useContext(AuthContext);
+    const [isLogged, setIslogged] = useState(false);
     const username = sessionManager.getUsername();
+    
+    useEffect(()=>{
+      setIslogged(user.isLogged);
+    }, [user])
+  
 
     return (
         <nav>

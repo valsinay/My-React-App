@@ -9,16 +9,13 @@ const userService = {
             username,
             password
         })
-            .then(res => {
-                console.log(res)
-            })
             .catch(err => {
                 console.error(err);
             });
     },
 
     login: (username, password) => {
-        return axios.post(`${host}/user/login`,{
+        return axios.post(`${host}/user/login`, {
             username,
             password
         })

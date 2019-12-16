@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import sessionManager from '../../utils/session-manager';
 import userService from '../../services/user-service';
 import './Login.css';
-import { Form, Input, Label, FormGroup, Button, FormFeedback } from 'reactstrap';
-
 
 class Login extends Component {
 
@@ -43,45 +41,25 @@ class Login extends Component {
 
     render() {
         return (
-            <div className='loginBox'>
+
+            <form className='authForm' onSubmit={this.handleSubmit}>
                 <h2>Login</h2>
-
-                <form className='textbox' onSubmit={this.handleSubmit}>
-                    <input
-                        type='username'
-                        name="username"
-                        placeholder="Username"
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        type='password'
-                        name="password"
-                        placeholder="Password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                    />
-                    <button className='btn' type='submit'>Login</button>
-                </form>
-            </div>
-
-            // <div className='formDiv'>
-            //     <h1>Login</h1>
-            //     <Form id="authForm" onSubmit={this.handleSubmit}>
-            //         <FormGroup>
-            //             <Label for="username">Username</Label>
-            //             <Input id="username" name="username" onChange={this.handleChange} />
-            //             <FormFeedback></FormFeedback>
-            //         </FormGroup>
-
-            //         <FormGroup>
-            //             <Label for="password">Password</Label>
-            //             <Input id="password" name="password" type='password' onChange={this.handleChange} />
-            //             <FormFeedback></FormFeedback>
-            //         </FormGroup>
-            //         <Button color="primary">Login</Button>
-            //     </Form>
-            // </div>
+                <input
+                    type='username'
+                    name="username"
+                    placeholder="Username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                />
+                <input
+                    type='password'
+                    name="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                />
+                <button className="submitBtn" type='submit'>Login</button>
+            </form>
         )
     }
 }

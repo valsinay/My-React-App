@@ -65,31 +65,31 @@ class Register extends Component {
   render() {
     const { data, errors } = this.state;
     return (
-      <div className="formDiv">
-        <div className="formHeader">
-          <h2>Register</h2>
-        </div>
-        <Form id="authForm" onSubmit={this.handleSubmit}>
-          <FormGroup>
-            <Label for="username">Username</Label>
-            <Input id="username" name="username" value={data.username} invalid={errors.username ? true : false} onChange={this.handleChange} />
-            <FormFeedback>{errors.username}</FormFeedback>
-          </FormGroup>
-
-          <FormGroup>
-            <Label for="password">Password</Label>
-            <Input id="password" name="password" type='password' value={data.password} invalid={errors.password ? true : false} onChange={this.handleChange} />
-            <FormFeedback>{errors.password}</FormFeedback>
-          </FormGroup>
-
-          <FormGroup>
-            <Label for="confirmPassword">Confirm password</Label>
-            <Input id="confirmPassword" name="confirmPassword" value={data.confirmPassword} type="confirmPassword" invalid={errors.confirmPassword ? true : false} onChange={this.handleChange} />
-            <FormFeedback>{errors.confirmPassword}</FormFeedback>
-          </FormGroup>
-          <Button color="primary" margin-left="">Register</Button>
-        </Form>
-      </div>
+      <form className='authForm' onSubmit={this.handleSubmit}>
+        <h2>Register</h2>
+        <input
+          type='username'
+          name="username"
+          placeholder="Username"
+          value={data.username}
+          onChange={this.handleChange}
+        />
+        <input
+          type='password'
+          name="password"
+          placeholder="Password"
+          value={data.password}
+          onChange={this.handleChange}
+        />
+        <input
+          type='password'
+          name="confirmPassword"
+          placeholder="Confirm password"
+          value={data.confirmPassword}
+          onChange={this.handleChange}
+        />
+        <button className="submitBtn" type='submit'>Register</button>
+      </form>
     )
   }
 }
