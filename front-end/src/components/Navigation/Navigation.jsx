@@ -24,6 +24,9 @@ function Navigation() {
                 </NavLink>
             </div>
             <ul className="container">
+                <NavLink exact activeClassName='active' to="/create" >
+                    <li className='cool-link active'>Create Car</li>
+                </NavLink>
                 <NavLink exact activeClassName='active' to="/" >
                     <li className='cool-link active' >Home</li>
                 </NavLink>

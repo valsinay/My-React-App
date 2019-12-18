@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Input, Label, FormGroup, Button, FormFeedback } from 'reactstrap';
-import './Register.css'
 import userService from "../../services/user-service";
+import registerValidator from '../../utils/register-validator';
+import { toast } from 'react-toastify';
+import './Register.css'
 
 class Register extends Component {
 
@@ -13,8 +14,7 @@ class Register extends Component {
         username: "",
         password: "",
         confirmPassword: ""
-      },
-      errors: {}
+      }
     }
   }
 
@@ -24,23 +24,8 @@ class Register extends Component {
       data: {
         ...this.state.data,
         [e.target.name]: e.target.value
-      },
-      errors: {
-        ...this.state.errors,
-        [e.target.value]: ''
       }
     });
-  }
-
-  validate = () => {
-    const { data } = this.state;
-    let errors = {};
-
-    if (data.username === "") errors.username = "Username can not be blank.";
-    if (data.password === "") errors.password = "Password must be valid.";
-    if (data.confirmPassword !== data.password) errors.confirmPassword = "Passwords must match.";
-
-    return errors;
   }
 
   handleSubmit = (e) => {
@@ -48,22 +33,18 @@ class Register extends Component {
 
     const { data } = this.state;
 
-    const errors = this.validate();
-
-    if (Object.keys(errors).length === 0) {
-
-      userService.register(data.username, data.password);
+    if (registerValidator(data.username, data.password, data.confirmPassword)) {
+      userService.register(data.username, data.password)
+      toast.success('🦄You have successfully registered!', { position: "top-right", toastClassName: "toast-container success" });
       this.props.history.push('/login');
+    }
 
-    }
-    else {
-      this.setState({ errors });
-    }
 
   }
 
   render() {
-    const { data, errors } = this.state;
+    const { data } = this.state;
+
     return (
       <form className='authForm' onSubmit={this.handleSubmit}>
         <h2>Register</h2>

@@ -2,7 +2,7 @@ import React, { useState, useContext, Component } from 'react';
 import sessionManager from '../../utils/session-manager';
 import userService from '../../services/user-service';
 import { AuthContext } from '../Context/AuthContext'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import signValidator from '../../utils/login-validator';
 
 import { Link } from 'react-router-dom';
@@ -14,7 +14,6 @@ function Login(props) {
     const [user, setUserStatus] = useContext(AuthContext);
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage] = useState(undefined);
 
     const updateUsername = (e) => {
         setUserName(e.target.value);

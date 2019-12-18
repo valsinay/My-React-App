@@ -1,6 +1,6 @@
 import axios from 'axios';
 import sessionManager from '../utils/session-manager';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 
@@ -24,7 +24,7 @@ const userService = {
         })
     },
     logout: () => {
-         axios.post(`${host}/user/logout`)
+        axios.post(`${host}/user/logout`)
             .then((res) => {
                 sessionManager.clear();
                 toast.success('You have successfully logged out.')
