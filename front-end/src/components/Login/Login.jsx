@@ -1,67 +1,73 @@
-import React, { Component } from 'react';
+import React, { useState, useContext, Component } from 'react';
 import sessionManager from '../../utils/session-manager';
 import userService from '../../services/user-service';
+import { AuthContext } from '../Context/AuthContext'
+import { toast, ToastContainer } from 'react-toastify';
+import signValidator from '../../utils/login-validator';
+
+import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 import './Login.css';
 
-class Login extends Component {
+function Login(props) {
 
-    constructor(props) {
-        super(props);
+    const [user, setUserStatus] = useContext(AuthContext);
+    const [username, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState(undefined);
 
-        this.state = {
-            username: '',
-            password: '',
-            loginErrors: ''
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    };
-
-
-
-    handleChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+    const updateUsername = (e) => {
+        setUserName(e.target.value);
     }
 
-    handleSubmit(e) {
+    const updatePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const handleSubmit = (e) => {
+
         e.preventDefault();
-
-        const { username, password } = this.state;
-
-        userService.login(username, password)
-            .then((res) => {
-                const { token, user } = res.data;
-                sessionManager.save(token, user.username);
-                this.props.history.push('/')
-                console.log('user logged')
-            })
+        if (signValidator(username, password)) {
+            userService.login(username, password)
+                .then((res) => {
+                    const { token, user } = res.data;
+                    sessionManager.save(token, user.username);
+                    toast.success('🦄You have successfully logged in!', {position:"top-right", toastClassName:"toast-container success"});
+                    setUserStatus({ isLogged: sessionManager.isLogged() })
+                    props.history.push('/')
+                })
+                .catch(() => {
+                    toast.error('Incorrect username or password', {
+                        position:"top-right", toastClassName:"toast-container error"})
+                    return false;
+                })
+        }   
     }
 
-    render() {
-        return (
+    return (
+        <form className='authForm' onSubmit={handleSubmit}>
+       
+            <h2>Login</h2>
+            <input
+                type='username'
+                name="username"
+                placeholder="Username"
+                value={username}
+                onChange={updateUsername}
+            />
 
-            <form className='authForm' onSubmit={this.handleSubmit}>
-                <h2>Login</h2>
-                <input
-                    type='username'
-                    name="username"
-                    placeholder="Username"
-                    value={this.state.username}
-                    onChange={this.handleChange}
-                />
-                <input
-                    type='password'
-                    name="password"
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                />
-                <button className="submitBtn" type='submit'>Login</button>
-            </form>
-        )
-    }
+            <input
+                type='password'
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={updatePassword}
+            />
+
+            <button className="submitBtn" type='submit'>Login</button>
+            <p>Don't have an account? <Link to="/register">Register here!</Link> </p>
+        </form>
+    )
 }
 
 export default Login;

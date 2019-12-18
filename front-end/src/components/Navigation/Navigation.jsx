@@ -1,52 +1,62 @@
 import React, { useContext, Fragment, useState, useEffect } from 'react';
-
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css'
+import { AuthContext } from '../Context/AuthContext'
 import sessionManager from '../../utils/session-manager'
+import { Nav } from 'reactstrap';
 
 function Navigation() {
+
+
     const [user] = useContext(AuthContext);
     const [isLogged, setIslogged] = useState(false);
     const username = sessionManager.getUsername();
-    
-    useEffect(()=>{
-      setIslogged(user.isLogged);
+
+    useEffect(() => {
+        setIslogged(user.isLogged);
     }, [user])
-  
 
     return (
         <nav>
             <div className="logo">
-                <Link to='/'>
-                    <h4>Car Shop</h4>
-                </Link>
+                <NavLink to='/'>
+                    <h3>Car Shop</h3>
+                </NavLink>
             </div>
             <ul className="container">
-                <Link to="/">
-                    <li className='cool-link'>Home</li>
-                </Link>
-                <Link to="/search">
+                <NavLink exact activeClassName='active' to="/" >
+                    <li className='cool-link active' >Home</li>
+                </NavLink>
+                <NavLink to="/search" activeClassName='active'>
                     <li className='cool-link'>Search</li>
-                </Link>
-                <Link to="/about">
+                </NavLink>
+                <NavLink to="/about" activeClassName='active'>
                     <li className='cool-link'>About</li>
-                </Link>
-                <Link to="/contact">
+                </NavLink>
+                <NavLink to="/contacts" activeClassName='active'>
                     <li className='cool-link'>Contact</li>
-                </Link>
+                </NavLink>
             </ul>
             <ul className="cool-link-auth">
-                <Link to="/login">
-                    <li className='cool-link auth'>Login</li>
-                </Link>
-                <Link to="/register">
-                    <li className='cool-link auth'>Register</li>
-                </Link>
-
-                <Link to="/logout">
-                    <li className='cool-link auth'>Logout</li>
-                </Link>
-
+                {!isLogged ?
+                    <Fragment>
+                        <NavLink to="/login" activeClassName="active">
+                            <li className='cool-link auth'>Login</li>
+                        </NavLink>
+                        <NavLink to="/register" activeClassName="active">
+                            <li className='cool-link auth'>Register</li>
+                        </NavLink>
+                    </Fragment>
+                    :
+                    <Fragment>
+                        <NavLink to="/logout" activeClassName="active">
+                            <li className='cool-link auth active'>Welcome, {username}</li>
+                        </NavLink>
+                        <NavLink to="/logout" activeClassName="active">
+                            <li className='cool-link auth active'>Logout</li>
+                        </NavLink>
+                    </Fragment>
+                }
             </ul>
         </nav>
     )

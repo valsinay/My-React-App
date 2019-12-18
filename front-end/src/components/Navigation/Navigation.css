@@ -29,19 +29,21 @@ li{
  font-family: 'Solway', serif;
  font-weight: bold;
  font-size: 2rem;
- padding: 0 20px;
+ padding: 0 15px;
  padding-top:0.5em;
+ color:black;
 }
 
 
 .cool-link::after{
  content: "";
- display: block;
+ display:block;
  width: 0;
- height: 2px;
+ height: 5px;
  background:black;
  transition: width .3s;
  transform:translateX(-50%) translateY(-50%);
+ margin-left:1.5em;
  left:50%;
  right:50%;
 
@@ -52,7 +54,13 @@ li{
  transition: width .3s;
  transform:translateX(-50%) translateY(-50%);
 }
-
-.logo{
-     padding-left:1em;
+li:hover, .active li{
+color:red;
 }
+
+.logo h3{
+     text-decoration:none;
+     padding-left:1em;
+     color:black;
+}
+

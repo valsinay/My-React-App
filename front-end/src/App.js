@@ -5,23 +5,44 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login'
 import Logout from './components/Logout/Logout'
 import Footer from './components/Footer/Footer'
+import NotFound from './components/NotFound/NotFound'
+import Contacts from './components/Contacts/Contacts'
+import About from './components/About/About'
+import { AuthProvider } from './components/Context/AuthContext'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import { ToastContainer } from 'react-toastify';
+import './index.css'
 
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <AuthProvider>
           <Navigation />
           <Switch>
-            <Route exact path={'/register'} component={Register} />
+            <Route exact path={'/register'} activeClass="" component={Register} />
             <Route exact path={'/login'} component={Login} />
             <Route exact path={'/logout'} component={Logout} />
+            <Route exact path={'/contacts'} component={Contacts} />
+            <Route exact path={'/about'} component={About} />
+
+            {/* <Route exact path={'*'} component={NotFound} /> */}
           </Switch>
           <Footer />
-        </div>
+
+        </AuthProvider>
+        <ToastContainer
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+          toastClassName='toast-container'
+        />
       </BrowserRouter>
     );
   }
