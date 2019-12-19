@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import signValidator from '../../utils/login-validator';
 
 import { Link } from 'react-router-dom';
-import * as Yup from 'yup';
 import './Login.css';
 
 function Login(props) {
@@ -31,7 +30,7 @@ function Login(props) {
                 .then((res) => {
                     const { token, user } = res.data;
                     sessionManager.save(token, user.username);
-                    toast.success('🦄You have successfully logged in!', {position:"top-right", toastClassName:"toast-container success"});
+                    toast.success('🦄You have successfully logged in!', {position:"top-right", toastClassName:"success"});
                     setUserStatus({ isLogged: sessionManager.isLogged() })
                     props.history.push('/')
                 })

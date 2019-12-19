@@ -1,26 +1,27 @@
 
 .cool-link-auth{
-
      display:flex;
 }
 body{
      margin:0;
      padding:0;
-     background:#0b0b0b;
      box-sizing: border-box;
-     background-image:url("/photo-of-person-driving-769892.jpg");
+     background-image:url("/photo-of-person-driving-769892.jpg") !important;
     background-repeat: no-repeat;
     background-size:cover;
 
 }
+.container{
+     margin-left:3em;
+}
 nav{
  width: 100%; 
- height:3rem;
+ height:4rem;
  display: flex;
  justify-content: space-around;
  align-items: center;
  background:#fff;
-
+ 
 }
 
 li{
@@ -54,13 +55,15 @@ li{
  transition: width .3s;
  transform:translateX(-50%) translateY(-50%);
 }
+
 li:hover, .active li{
-color:red;
+color:#D81921;
 }
 
-.logo h3{
+.logo img {
      text-decoration:none;
      padding-left:1em;
-     color:black;
+     height:3em;
+     width:7em;
 }
 

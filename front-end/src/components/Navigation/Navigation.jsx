@@ -20,15 +20,13 @@ function Navigation() {
         <nav>
             <div className="logo">
                 <NavLink to='/'>
-                    <h3>Car Shop</h3>
+                    <img src="/logo.jpg" alt="" />
                 </NavLink>
             </div>
             <ul className="container">
-                <NavLink exact activeClassName='active' to="/create" >
-                    <li className='cool-link active'>Create Car</li>
-                </NavLink>
+
                 <NavLink exact activeClassName='active' to="/" >
-                    <li className='cool-link active' >Home</li>
+                    <li className='cool-link' >Home</li>
                 </NavLink>
                 <NavLink to="/search" activeClassName='active'>
                     <li className='cool-link'>Search</li>
@@ -39,6 +37,11 @@ function Navigation() {
                 <NavLink to="/contacts" activeClassName='active'>
                     <li className='cool-link'>Contact</li>
                 </NavLink>
+                {isLogged ?
+                    <NavLink exact activeClassName='active' to="/create-car" >
+                        <li className='cool-link active'>Create  <img className='active' src="https://img.icons8.com/ios/48/000000/sedan.png" /></li>
+                    </NavLink>
+                    : ""}
             </ul>
             <ul className="cool-link-auth">
                 {!isLogged ?

@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer'
 import NotFound from './components/NotFound/NotFound'
 import Contacts from './components/Contacts/Contacts'
 import About from './components/About/About'
+import CreateCar from './components/Car/Create-Car';
 import { AuthProvider } from './components/Context/AuthContext'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path={'/logout'} component={Logout} />
             <Route exact path={'/contacts'} component={Contacts} />
             <Route exact path={'/about'} component={About} />
+            <Route exact path={'/create-car'}  component={CreateCar} />
 
             {/* <Route exact path={'*'} component={NotFound} /> */}
           </Switch>
