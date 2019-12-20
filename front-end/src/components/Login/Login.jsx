@@ -30,21 +30,21 @@ function Login(props) {
                 .then((res) => {
                     const { token, user } = res.data;
                     sessionManager.save(token, user.username);
-                    toast.success('🦄You have successfully logged in!', {position:"top-right", toastClassName:"success"});
-                    setUserStatus({ isLogged: sessionManager.isLogged() })
+                    toast.success('🦄You have successfully logged in!', { position: "top-right", toastClassName: "success" });
+                    setUserStatus({ isLogged: sessionManager.isLogged(), userId: user._id })
                     props.history.push('/')
                 })
                 .catch(() => {
                     toast.error('Incorrect username or password', {
-                        position:"top-right", toastClassName:"toast-container error"})
+                        position: "top-right", toastClassName: "toast-container error"
+                    })
                     return false;
                 })
-        }   
+        }
     }
 
     return (
         <form className='authForm' onSubmit={handleSubmit}>
-       
             <h2>Login</h2>
             <input
                 type='username'

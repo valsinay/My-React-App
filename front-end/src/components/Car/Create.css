@@ -1,38 +1,47 @@
-.title {
+
+.create {
     font-size: 2em;
     text-align: center;
-    margin: 1.2em;
     color: #313537;
+    padding-top:1.5em;
   }
 
-.create-form form{
-    border: 1px solid #9da5b2;
-    border-radius: 0.7em;
-    display: flex;
-    flex-direction: column;
-    max-width: 50%;
-    margin: 0 auto;
-    padding: 1.5em;
+  .carDiv{
+  }
+.createCar {
+   border: 1px solid #9da5b2;
+  border-radius: 0.7em;
+  flex-direction: column;
+  max-width: 50%;
+ background:var(--contact-form-background, rgb(0,0,0,0.8));
+ margin-top:2em;
+ margin-left:30em;
+ height:65em;
+}
+  
+.createCar div{
+  margin-top:1.8rem;
+  margin-right:11em;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  
 }
 
-.create-form div{
-    margin: 0.8rem 0;
-}
-
-option {
+.createCar option {
     font-size: 1.2em;
     color: #FFFFFF;
     border-radius:15px;
-    background-color:#9da5b2;
+    background-color:blue;
   }
 
-  .create-form select {
+  .createCar select {
     text-align-last:center;
     width: 31.3%;
-  }
+}
 
-  .create-form input,
-.create-form select {
+.createCar input,
+.createCar select {
   outline: none;
   border: 1px solid #9da5b2;
   border-radius: 0.7em;
@@ -43,23 +52,41 @@ option {
   transition: 0.2s;
 }
 
-.create-form label,
+.createCar label,
 .engineBox label {
   display: inline-block;
   text-align: right;
-  margin-left:20em;
-  align-items: center;
   font-size: 1.1em;
   padding: 0 1em;
-  width: 8em;
+  width: 10em;
+  color:#D81921;
 }
 
 .description textarea{
-    vertical-align: top;
+  vertical-align: top;
   outline: none;
   border: 1px solid #9da5b2;
   border-radius: 0.4em;
   padding: 0.6em;
-  width: 28.8%;
+  width: 30%;
   height: 6em;
+}
+
+
+.createCarBtn:hover{
+background-color:  #D81921;
+color:white;
+;}
+
+.createCarBtn{
+  border:0;
+  background:none;
+  display: block;
+  width:28%;
+  border:2px solid #D81921;
+  padding:10px 30px;
+  outline: none;
+  color:white;
+  border-radius: 23px;
+  transition: 0.25s;
 }

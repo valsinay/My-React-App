@@ -31,6 +31,7 @@ router.post('/login', (req, res, next) => {
             const token = jwt.createToken({ id: user._id });
             res.cookie(config.authCookieName, token);
             res.cookie('username', user._id);
+            res.cookie('userId',username)
             res.send({token,user});
            
         })

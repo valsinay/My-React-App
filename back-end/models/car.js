@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 
 let CarSchema = new mongoose.Schema({
     make: {
@@ -52,13 +53,17 @@ let CarSchema = new mongoose.Schema({
         required: true
     },
     owner: {
-        type: ongoose.Schema.Types.ObjectId,
-        required: true
+        type: String,
+        ref: "User"
+        
+    },
+    ownerId:{
+        type:String
     },
     imageUrl: {
         type: String,
-        required
-    },
+        required:true
+    }
 
 });
 

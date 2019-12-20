@@ -1,0 +1,6 @@
+.main {
+    background-image:url("/photo-of-person-driving-769892.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    min-height: 100vh;
+  }

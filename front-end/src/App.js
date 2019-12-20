@@ -8,7 +8,8 @@ import Footer from './components/Footer/Footer'
 import NotFound from './components/NotFound/NotFound'
 import Contacts from './components/Contacts/Contacts'
 import About from './components/About/About'
-import CreateCar from './components/Car/Create-Car';
+import CreateCar from './components/Car/CreateCar';
+import Main from './components/Main/Main'
 import { AuthProvider } from './components/Context/AuthContext'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -21,19 +22,10 @@ class App extends Component {
       <BrowserRouter>
         <AuthProvider>
           <Navigation />
-          <Switch>
-            <Route exact path={'/register'} activeClass="" component={Register} />
-            <Route exact path={'/login'} component={Login} />
-            <Route exact path={'/logout'} component={Logout} />
-            <Route exact path={'/contacts'} component={Contacts} />
-            <Route exact path={'/about'} component={About} />
-            <Route exact path={'/create-car'}  component={CreateCar} />
-
-            {/* <Route exact path={'*'} component={NotFound} /> */}
-          </Switch>
+          <Main />
           <Footer />
-
         </AuthProvider>
+
         <ToastContainer
           autoClose={2500}
           hideProgressBar={false}
@@ -46,6 +38,7 @@ class App extends Component {
           toastClassName='toast-container'
         />
       </BrowserRouter>
+
     );
   }
 }

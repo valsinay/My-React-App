@@ -16,7 +16,7 @@ let UserSchema = new mongoose.Schema({
     cars:
     [{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Cars'
+        ref:'Car'
     }]
 });
 
